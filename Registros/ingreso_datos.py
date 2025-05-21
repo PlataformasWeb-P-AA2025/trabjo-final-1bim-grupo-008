@@ -1,31 +1,33 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+import os,sys
+sys.path.insert(0,os.path.abspath(os.path.join(__file__,"..","..")))
 
-# se importa la clase(s) del 
-# archivo genera_tablas
+
 from DB.genera_table import Usuario, Publicacion,Reaccion
-
-# se importa información del archivo configuracion
 from Puente.configuracion import cadena_base_datos 
-# se genera enlace al gestor de base de
-# datos
-# para el ejemplo se usa la base de datos
-# sqlite
 engine = create_engine(cadena_base_datos)
-
 Session = sessionmaker(bind=engine)
 session = Session()
 
-
 # Leemos los archivos
-with open('data/datos_clubs.txt', 'r', encoding='utf-8') as f:
-    lineas_clubs = f.readlines()
+with open('DATA/usuarios_red_x.csv', 'r', encoding='utf-8') as f:
+    usuarios = f.readlines()
 
-with open('data/datos_jugadores.txt', 'r', encoding='utf-8') as f:
-    lineas_jugadores = f.readlines()
+with open('DATA/usuarios_publicaciones.csv', 'r', encoding='utf-8') as f:
+    publicaciones = f.readlines()    
 
-# Creamos los objetos Club
-clubs_dict = {}  
+with open('DATA/usuario_publicacion_emocion.csv', 'r', encoding='utf-8') as f:
+    reacciones = f.readlines()    
+
+
+#llenamos usuario
+for usu in usuarios:
+    usuario = Usuario(nombre=usu.strip()[1:])
+
+
+
+
 
 for linea in lineas_clubs:
     partes = linea.strip().split(';')
@@ -56,11 +58,3 @@ for linea in lineas_jugadores:
 # Guardamos los jugadores en la base
 session.commit()
 
-# Mostrar resultados
-print("CLUBES")
-for club in session.query(Club).all():
-    print(f"{club.nombre} - {club.deporte} - {club.fundacion}")
-
-print("\nJUGADORES")
-for jugador in session.query(Jugador).all():
-    print(f"{jugador.nombre} - {jugador.posicion} - {jugador.dorsal} - Club: {jugador.club.nombre}")
