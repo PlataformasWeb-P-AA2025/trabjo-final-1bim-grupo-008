@@ -76,3 +76,6 @@ class Reaccion
 ## En caso de usar IA-Generativa para consulta de información
 
 - En un archivo llamado informacion.md; explicando a detalle el uso de cada prompt
+
+
+##Crear la base Las relaciones Estructurar el proyecto y Intentar Copular la Base
