@@ -6,6 +6,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint
 import os,sys
 
 sys.path.insert(0,os.path.abspath(os.path.join(__file__,"..","..")))
+
 from Puente.configuracion import cadena_base_datos 
 
 
