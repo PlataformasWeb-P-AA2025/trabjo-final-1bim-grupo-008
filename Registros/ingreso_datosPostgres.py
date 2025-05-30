@@ -4,7 +4,7 @@ import os,sys
 sys.path.insert(0,os.path.abspath(os.path.join(__file__,"..","..")))
 
 from DB.genera_table import *
-from Puente.configuracion import cadena_base_datos 
+from Puente.configuracionPostgres import cadena_base_datos 
 engine = create_engine(cadena_base_datos)
 Session = sessionmaker(bind=engine)
 session = Session()
