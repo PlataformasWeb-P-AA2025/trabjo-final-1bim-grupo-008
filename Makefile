@@ -1,24 +1,18 @@
-# Makefile - automatización para entorno de base de datos
-
-# Levantar contenedor Docker con PostgreSQL
+# Levantar contenedor Docker con PostgreSQL y el contenedor de la app
 docker-up:
-	docker-compose up -d
+	docker compose up -d --build
 
-# Parar contenedor Docker
+# Parar contenedores
 docker-down:
-	docker-compose down
+	docker compose down
 
-# Crear las tablas en la base de datos
+# Crear tablas
 crear-tablas:
-	python DB/genere_table_Postgres.py
+	docker exec proyecto-app python3 DB/genere_table_Postgres.py
 
-# Llenar las tablas con los datos CSV
+# Llenar datos
 llenar-datos:
-	python Registros/ingreso_datosPostgres.py
+	docker exec proyecto-app python3 Registros/ingreso_datosPostgres.py
 
-# Eliminar datos creados en el volumen (si se quiere reiniciar)
-borrar-datos:
-	docker-compose down -v
-
-# Ejecutar todo: docker + crear tablas + llenar datos
+# Todo
 todo: docker-up crear-tablas llenar-datos
