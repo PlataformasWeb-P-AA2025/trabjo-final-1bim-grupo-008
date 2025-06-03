@@ -19,13 +19,13 @@ with open('DATA/usuarios_publicaciones.csv', 'r', encoding='utf-8') as f:
 with open('DATA/usuario_publicacion_emocion.csv', 'r', encoding='utf-8') as f:
     reacciones = f.readlines()    
 
-"""
+
 #llenamos usuario
 
 for usu in usuarios[1:]:
     usuario = Usuario(nombre=usu.strip())
     session.add(usuario)
-
+session.commit()
 #llenamos publicaciones
 
 for publi in publicaciones[1:]:
@@ -35,7 +35,7 @@ for publi in publicaciones[1:]:
     if usuario:
         publicacion = Publicacion(contenido=publicacion, usuario=usuario)
         session.add(publicacion)
-
+session.commit()
 #llenamos Reacciones
 
 for reac in reacciones[1:]:
@@ -46,7 +46,7 @@ for reac in reacciones[1:]:
     if usuario and publicacion:
         reaccion = Reaccion(usuario=usuario, publicacion=publicacion, emocion=reaccion)
         session.add(reaccion)
-"""
+
 # Guardamos todo en la base
 session.commit()
 
