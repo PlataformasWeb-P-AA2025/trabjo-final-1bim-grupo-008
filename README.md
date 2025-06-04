@@ -81,5 +81,4 @@ class Reaccion
 ##Crear la base Las relaciones Estructurar el proyecto y Intentar Copular la Base
 
 ## Instrucciones para levantar el proyecto en ubuntu.
-chmod +x start.sh wait-for-it.sh
 make todo
