@@ -81,4 +81,15 @@ class Reaccion
 ##Crear la base Las relaciones Estructurar el proyecto y Intentar Copular la Base
 
 ## Instrucciones para levantar el proyecto en ubuntu.
-make todo
+-make todo
+-docker start proyecto-app
+-docker ps -a
+-docker exec -it proyecto-app bash
+-python3 DB/genere_table_Postgres.py
+-python3 Registros/ingreso_datosPostgres.py
+
+## Visualizar Resultados en Postgres.
+-docker exec -it proyecto-db bash
+-psql -U proyectouser -d proyecto
+-\dt
+-SQL
